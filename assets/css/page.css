@@ -190,12 +190,9 @@ a#open:focus-visible {
     align-items: stretch;
     background: var(--surface-elevated);
     border-radius: 16px;
-    border: 1px solid var(--outline);
     padding: 2px 2px 2px 14px;
-
-    box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.35),
-        0 1px 0 rgba(255, 255, 255, 0.02);
+    box-shadow: none;
+    border: 1px solid color-mix(in srgb, var(--outline) 80%, transparent);
 }
 
 .md-input {
