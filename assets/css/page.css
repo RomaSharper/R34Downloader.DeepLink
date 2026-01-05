@@ -143,13 +143,11 @@ a#open {
 }
 
 a#open:hover {
-    transform: translateY(-1px);
     filter: brightness(1.05);
     box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
 }
 
 a#open:active {
-    transform: translateY(0);
     filter: brightness(0.96);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
 }
@@ -218,13 +216,11 @@ a#open:focus-visible {
 .md-icon-button:hover {
     background-color: rgba(255, 140, 0, 0.08);
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
-    transform: translateY(-1px);
 }
 
 .md-icon-button:active {
     background-color: rgba(255, 140, 0, 0.16);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
-    transform: translateY(0);
 }
 
 .md-icon-button:focus-visible {
