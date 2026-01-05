@@ -260,6 +260,63 @@ a#open:focus-visible {
     transform: translateX(-50%) translateY(0);
 }
 
+#autoClose {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+
+/* Кружок с цифрой, эффект «кинотеатра» */
+#countdownBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 2px solid color-mix(in srgb, var(--primary) 80%, transparent);
+    background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.16), transparent 55%),
+        color-mix(in srgb, var(--surface-elevated) 75%, black 25%);
+    color: var(--text-main);
+    font-weight: 600;
+    font-size: 15px;
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.75),
+        0 8px 18px rgba(0, 0, 0, 0.7);
+    animation: countdown-pulse 1s linear infinite;
+}
+
+/* Цифра внутри */
+#countdown {
+    display: inline-block;
+    min-width: 1ch;
+    text-align: center;
+}
+
+/* Пульсация под смену секунда */
+@keyframes countdown-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.75),
+            0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+    50% {
+        transform: scale(1.06);
+        box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.9),
+            0 12px 24px rgba(0, 0, 0, 0.9);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.75),
+            0 8px 18px rgba(0, 0, 0, 0.7);
+    }
+}
+
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
