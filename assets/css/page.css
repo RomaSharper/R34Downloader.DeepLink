@@ -228,18 +228,15 @@ a#open:focus-visible {
     margin-left: 2px;
     transition:
         background-color 0.14s ease-out,
-        transform 0.12s ease-out,
-        box-shadow 0.12s ease-out;
+        transform 0.12s ease-out;
 }
 
 .md-icon-button:hover {
     background-color: rgba(255, 140, 0, 0.08);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
 }
 
 .md-icon-button:active {
     background-color: rgba(255, 140, 0, 0.16);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
 }
 
 .md-icon-button:focus-visible {
