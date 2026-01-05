@@ -48,12 +48,12 @@
 }
 
 ::selection {
-    background: color-mix(in srgb, var(--primary) 45%, transparent); /* [web:36][web:40] */
+    background: color-mix(in srgb, var(--primary) 45%, transparent);
     color: var(--text-main);
 }
 
 ::-moz-selection {
-    background: color-mix(in srgb, var(--primary) 45%, transparent); /* [web:36][web:39] */
+    background: color-mix(in srgb, var(--primary) 45%, transparent);
     color: var(--text-main);
 }
 
@@ -94,8 +94,6 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
-    /* рекомендуемые настройки вариативного шрифта */ /* [web:12][web:19] */
     font-variation-settings:
         "FILL" 0,
         "wght" 400,
@@ -267,7 +265,6 @@ a#open:focus-visible {
     font-size: 13px;
 }
 
-/* Кружок с цифрой, эффект «кинотеатра» */
 #countdownBadge {
     display: inline-flex;
     align-items: center;
@@ -279,41 +276,48 @@ a#open:focus-visible {
     background:
         radial-gradient(circle at 30% 30%, rgba(255,255,255,0.16), transparent 55%),
         color-mix(in srgb, var(--surface-elevated) 75%, black 25%);
-    color: var(--text-main);
+    color: var(--text-main); /* тёмная тема: светлый текст */
     font-weight: 600;
     font-size: 15px;
     box-shadow:
         0 0 0 1px rgba(0, 0, 0, 0.75),
         0 8px 18px rgba(0, 0, 0, 0.7);
-    animation: countdown-pulse 1s linear infinite;
 }
 
-/* Цифра внутри */
+@media (prefers-color-scheme: light) {
+    #countdownBadge {
+        background:
+            radial-gradient(circle at 30% 30%, rgba(0,0,0,0.07), transparent 55%),
+            #FFFFFF;
+        color: #000000;
+        box-shadow:
+            0 0 0 1px rgba(0, 0, 0, 0.12),
+            0 6px 16px rgba(0, 0, 0, 0.18);
+    }
+}
+
 #countdown {
     display: inline-block;
     min-width: 1ch;
     text-align: center;
 }
 
-/* Пульсация под смену секунда */
-@keyframes countdown-pulse {
+.countdown-slide {
+    animation: countdown-slide-up 0.35s ease-out;
+}
+
+@keyframes countdown-slide-up {
     0% {
-        transform: scale(1);
-        box-shadow:
-            0 0 0 1px rgba(0, 0, 0, 0.75),
-            0 8px 18px rgba(0, 0, 0, 0.7);
+        transform: translateY(8px);
+        opacity: 0;
     }
-    50% {
-        transform: scale(1.06);
-        box-shadow:
-            0 0 0 1px rgba(0, 0, 0, 0.9),
-            0 12px 24px rgba(0, 0, 0, 0.9);
+    40% {
+        transform: translateY(0);
+        opacity: 1;
     }
     100% {
-        transform: scale(1);
-        box-shadow:
-            0 0 0 1px rgba(0, 0, 0, 0.75),
-            0 8px 18px rgba(0, 0, 0, 0.7);
+        transform: translateY(-3px);
+        opacity: 0.96;
     }
 }
 
