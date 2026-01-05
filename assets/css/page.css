@@ -5,7 +5,7 @@
     --on-primary: #1A1A1A;
 
     /* Фон и поверхности */
-    --bg: #0E0E0E;
+    --bg: #281400;
     --surface: #151515;
     --surface-elevated: #1C1C1C;
     --surface-border: #262626;
@@ -44,6 +44,28 @@
         --tg-dark: #1E8CCF;
 
         --shadow-strong: 0 12px 28px rgba(0, 0, 0, 0.25);
+    }
+}
+
+::selection {
+    background: color-mix(in srgb, var(--primary) 45%, transparent); /* [web:36][web:40] */
+    color: var(--text-main);
+}
+
+::-moz-selection {
+    background: color-mix(in srgb, var(--primary) 45%, transparent); /* [web:36][web:39] */
+    color: var(--text-main);
+}
+
+@media (prefers-color-scheme: light) {
+    ::selection {
+        background: color-mix(in srgb, var(--primary) 32%, transparent);
+        color: var(--text-main);
+    }
+
+    ::-moz-selection {
+        background: color-mix(in srgb, var(--primary) 32%, transparent);
+        color: var(--text-main);
     }
 }
 
@@ -162,6 +184,7 @@ a#open:focus-visible {
 }
 
 .md-field {
+    user-select: none;
     margin-top: 10px;
     display: flex;
     align-items: stretch;
@@ -183,10 +206,6 @@ a#open:focus-visible {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.md-input::selection {
-    background: rgba(255, 140, 0, 0.28);
 }
 
 .md-input[readonly] {
