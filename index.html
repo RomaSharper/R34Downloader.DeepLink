@@ -43,7 +43,21 @@
             display: none;
         }
     </style>
+</head>
 
+<body>
+    <div class="container">
+        <div id="opening">
+            <h2>Открываю приложение…</h2>
+            <div class="spinner"></div>
+        </div>
+        <div id="fallback" class="hidden">
+            <h2>Приложение не установлено</h2>
+            <p>Чтобы открыть эту ссылку, приложение R34 Downloader должно быть установлено на устройстве.</p>
+            <p>Если оно у тебя есть — открой APK вручную.</p>
+        </div>
+    </div>
+    
     <script>
         const params = new URLSearchParams(window.location.search);
         const deeplink = "r34downloader://open?" + params.toString();
@@ -51,28 +65,16 @@
         // Пытаемся открыть приложение
         window.location.replace(deeplink);
 
-        // Через 1.5 сек показываем fallback
-        setTimeout(() => {
-            document.getElementById("opening").classList.add("hidden");
-            document.getElementById("fallback").classList.remove("hidden");
-        }, 1500);
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const deeplink = "r34downloader://open?" + params.toString();
+            window.location.href = deeplink;  // или .replace, но href мягче
+
+            setTimeout(() => {
+                document.getElementById("opening").classList.add("hidden");
+                document.getElementById("fallback").classList.remove("hidden");
+            }, 1500);
+        });
     </script>
-</head>
-
-<body>
-    <div class="container">
-
-        <div id="opening">
-            <h2>Открываю приложение…</h2>
-            <div class="spinner"></div>
-        </div>
-
-        <div id="fallback" class="hidden">
-            <h2>Приложение не установлено</h2>
-            <p>Чтобы открыть эту ссылку, приложение R34 Downloader должно быть установлено на устройстве.</p>
-            <p>Если оно у тебя есть — открой APK вручную.</p>
-        </div>
-
-    </div>
 </body>
 </html>
