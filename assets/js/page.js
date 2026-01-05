@@ -6,7 +6,16 @@ setTimeout(() => {
     document.getElementById("open").href = deeplink;
     document.getElementById("opening").classList.add("hidden");
     document.getElementById("fallback").classList.remove("hidden");
+
+    const raw = params.get('tags') || '';
+    const tagsString = raw.replace(/[,+]/g, ' ').trim();
+    
+    const tagsField = document.getElementById('tagsField');
+    if (tagsField && tagsString) {
+        tagsField.value = tagsString;
+    }
 }, 2000);
+
 
 const tagsField = document.getElementById('tagsField');
 const copyBtn = document.getElementById('copyTags');
