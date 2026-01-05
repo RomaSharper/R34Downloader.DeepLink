@@ -11,16 +11,21 @@
 <body>
     <div class="container">
         <div id="opening">
-            <h2>Открываю приложение…</h2>
+            <h2>Открываю R34 Downloader…</h2>
             <div class="spinner"></div>
+            <p id="openingHint" class="hint">
+                Если приложение не открылось автоматически, подождите немного — появится кнопка для открытия вручную.
+            </p>
         </div>
-
+        
         <div id="fallback" class="hidden">
-            <h2>Приложение не установлено</h2>
-            <p>Чтобы открыть эту ссылку, приложение R34 Downloader должно быть установлено на устройстве.</p>
-
-            <p class="hint">Откройте приложение вручную и вставьте следующие теги:</p>
-
+            <h2>Приложение не открылось?</h2>
+            <p>
+                Нажмите кнопку ниже, чтобы открыть R34 Downloader вручную.
+            </p>
+        
+            <p class="hint">Теги для вставки в приложение:</p>
+        
             <div class="md-field">
                 <input
                     id="tagsField"
@@ -32,10 +37,14 @@
                     <span class="material-symbols-rounded">content_copy</span>
                 </button>
             </div>
-
-            <a id="open" href="r34downloader://open">Открыть повторно</a>
+        
+            <a id="open" href="r34downloader://open">Открыть приложение</a>
+        
+            <p id="autoClose" class="hint">
+                Это окно закроется через <span id="countdown">5</span> секунд.
+            </p>
         </div>
-
+        
         <div id="toast" class="toast">Теги скопированы</div>
     </div>
     
