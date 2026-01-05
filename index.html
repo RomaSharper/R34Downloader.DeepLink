@@ -23,14 +23,8 @@
     
     <script>
         const params = new URLSearchParams(window.location.search);
-        
-        // Пробуем deeplink сразу
         const deeplink = "r34downloader://open?" + params.toString();
-        const a = document.createElement('a');
-        a.href = deeplink;
-        a.click();
-    
-        // Fallback через 2 сек
+        window.location.href = deeplink;
         setTimeout(() => {
             document.getElementById("open").href = deeplink;
             document.getElementById("opening").classList.add("hidden");
