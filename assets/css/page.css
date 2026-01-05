@@ -154,24 +154,17 @@ a#open {
     text-decoration: none;
     cursor: pointer;
     border: none;
-
-    box-shadow:
-        0 10px 24px rgba(0, 0, 0, 0.6);
-
     transition:
         transform 0.12s ease-out,
-        box-shadow 0.12s ease-out,
         filter 0.12s ease-out;
 }
 
 a#open:hover {
     filter: brightness(1.05);
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.7);
 }
 
 a#open:active {
     filter: brightness(0.96);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
 }
 
 a#open:focus-visible {
@@ -191,7 +184,6 @@ a#open:focus-visible {
     background: var(--surface-elevated);
     border-radius: 16px;
     padding: 2px 2px 2px 14px;
-    box-shadow: none;
     border: 1px solid color-mix(in srgb, var(--outline) 80%, transparent);
 }
 
@@ -255,7 +247,6 @@ a#open:focus-visible {
     border-radius: 999px;
     font-size: 13px;
     border: 1px solid var(--surface-border);
-    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.7);
     opacity: 0;
     pointer-events: none;
     transition:
