@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Открываю R34 Downloader…</title>
     <link rel="stylesheet" href="assets/css/page.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -13,23 +14,33 @@
             <h2>Открываю приложение…</h2>
             <div class="spinner"></div>
         </div>
+
         <div id="fallback" class="hidden">
             <h2>Приложение не установлено</h2>
             <p>Чтобы открыть эту ссылку, приложение R34 Downloader должно быть установлено на устройстве.</p>
             <p>Если оно у тебя есть — открой APK вручную.</p>
+
+            <p class="hint">Откройте приложение вручную и вставьте следующие теги:</p>
+
+            <div class="md-field">
+                <input
+                    id="tagsField"
+                    type="text"
+                    class="md-input"
+                    readonly
+                    value="#r34 #downloader #example"
+                />
+                <button id="copyTags" type="button" class="md-icon-button" aria-label="Скопировать теги">
+                    <span class="material-symbols-rounded">content_copy</span>
+                </button>
+            </div>
+
             <a id="open" href="r34downloader://open">Открыть повторно</a>
         </div>
+
+        <div id="toast" class="toast">Теги скопированы</div>
     </div>
     
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        const deeplink = "r34downloader://open?" + params.toString();
-        window.location.href = deeplink;
-        setTimeout(() => {
-            document.getElementById("open").href = deeplink;
-            document.getElementById("opening").classList.add("hidden");
-            document.getElementById("fallback").classList.remove("hidden");
-        }, 2000);
-    </script>
+    <script src="assets/js/page.js"></script>
 </body>
 </html>
