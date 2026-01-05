@@ -12,22 +12,21 @@ const tagsField = document.getElementById('tagsField');
 const copyBtn = document.getElementById('copyTags');
 const toast = document.getElementById('toast');
 
-function showToast() {
+const showToast = () => {
     toast.classList.add('toast-show');
     setTimeout(() => {
         toast.classList.remove('toast-show');
     }, 1800);
 }
 
-async function copyTags() {
+const copyTags = async () => {
     const text = tagsField.value;
     try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(text); // [web:7]
+            await navigator.clipboard.writeText(text);
         } else {
-            // Фолбек для старых браузеров
             tagsField.select();
-            document.execCommand('copy'); // [web:7]
+            document.execCommand('copy');
         }
         showToast();
     } catch (e) {
