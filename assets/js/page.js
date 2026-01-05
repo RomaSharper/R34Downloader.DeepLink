@@ -27,11 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         if (navigator.clipboard?.writeText) {
-            navigator.clipboard.writeText(tagsField.value).then(showToast).catch(() => {
-                tagsField.select();
-                document.execCommand('copy');
-                showToast();
-            });
+            navigator.clipboard.writeText(tagsField.value)
+                .then(showToast)
+                .catch(() => {
+                    tagsField.select();
+                    document.execCommand('copy');
+                    showToast();
+                });
         } else {
             tagsField.select();
             document.execCommand('copy');
