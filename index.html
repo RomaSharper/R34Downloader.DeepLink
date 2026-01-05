@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Redirecting…</title>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const deeplink = "r34downloader://open?" + params.toString();
+        window.location.replace(deeplink);
+        setTimeout(() => {
+            document.getElementById("opening").style.display = "none";
+            document.getElementById("fallback").style.display = "block";
+        }, 1500);
+    </script>
+</head>
+<body style="font-family: Inter, Roboto, sans-serif; padding: 20px;">
+    <h2 id="opening">Открываю приложение…</h2>
+    <div id="fallback" style="display:none;">
+        <p>Похоже, приложение не установлено.</p>
+    </div>
+</body>
+</html>
