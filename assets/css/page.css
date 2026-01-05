@@ -103,6 +103,7 @@ p {
 }
 
 a#open {
+    user-select: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
