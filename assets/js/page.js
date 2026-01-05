@@ -1,47 +1,54 @@
-const params = new URLSearchParams(window.location.search);
-const deeplink = "r34downloader://open?" + params.toString();
-window.location.href = deeplink;
-
-setTimeout(() => {
-    document.getElementById("open").href = deeplink;
-    document.getElementById("opening").classList.add("hidden");
-    document.getElementById("fallback").classList.remove("hidden");
-
-    const raw = params.get('tags') || '';
-    const tagsString = raw.replace(/[,+]/g, ' ').trim();
-    
+document.addEventListener('DOMContentLoaded', () => {
+    const fallback = document.getElementById('fallback');
+    const opening = document.getElementById('opening');
+    const countdownEl = document.getElementById('countdown');
     const tagsField = document.getElementById('tagsField');
-    if (tagsField && tagsString) {
-        tagsField.value = tagsString;
+    const copyBtn = document.getElementById('copyTags');
+    const toast = document.getElementById('toast');
+    const openLink = document.getElementById('open');
+
+    const params = new URLSearchParams(window.location.search);
+    const tags = params.get('tags') || '';
+    if (tagsField) {
+        tagsField.value = tags.replace(/\+/g, ' ');
     }
-}, 2000);
+    if (openLink && tags) {
+        openLink.href = `r34downloader://open?tags=${encodeURIComponent(tags)}`;
+    }
 
-
-const tagsField = document.getElementById('tagsField');
-const copyBtn = document.getElementById('copyTags');
-const toast = document.getElementById('toast');
-
-const showToast = () => {
-    toast.classList.add('toast-show');
-    setTimeout(() => {
-        toast.classList.remove('toast-show');
-    }, 1800);
-}
-
-const copyTags = async () => {
-    const text = tagsField.value;
-    try {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            await navigator.clipboard.writeText(text);
-        } else {
+    copyBtn?.addEventListener('click', () => {
+        if (!tagsField.value) return;
+        navigator.clipboard.writeText(tagsField.value).then(() => {
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }).catch(() => {
             tagsField.select();
             document.execCommand('copy');
-        }
-        showToast();
-    } catch (e) {
-        showToast();
-    }
-}
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        });
+    });
 
-tagsField.addEventListener('click', copyTags);
-copyBtn.addEventListener('click', copyTags);
+    // 3) Пытаемся открыть приложение сразу
+    if (openLink) {
+        window.location.href = openLink.href;
+    }
+
+    setTimeout(() => {
+        opening.classList.add('hidden');
+        fallback.classList.remove('hidden');
+
+        let remaining = 5;
+        countdownEl.textContent = remaining.toString();
+
+        const intervalId = setInterval(() => {
+            remaining -= 1;
+            countdownEl.textContent = remaining.toString();
+
+            if (remaining <= 0) {
+                clearInterval(intervalId);
+                window.close();
+            }
+        }, 1000);
+    }, 1200);
+});
